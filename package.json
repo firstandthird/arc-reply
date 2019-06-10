@@ -1,0 +1,28 @@
+{
+  "name": "arc-reply",
+  "version": "0.0.1",
+  "description": "helper library that simplifies HTTP responses from arc/lambda",
+  "main": "./lib/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/arc-reply.git"
+  },
+  "scripts": {
+    "test": "tap test",
+    "lint": "eslint ."
+  },
+  "author": "First+Third",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firstandthird/arc-reply/issues"
+  },
+  "homepage": "https://github.com/firstandthird/arc-reply",
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-firstandthird": "^4.0.1",
+    "eslint-plugin-import": "^2.1.0",
+    "tap": "^14.2.2"
+  },
+  "dependencies": {
+  }
+}
