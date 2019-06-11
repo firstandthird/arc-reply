@@ -2,7 +2,7 @@
   "name": "arc-reply",
   "version": "0.0.1",
   "description": "helper library that simplifies HTTP responses from arc/lambda",
-  "main": "./lib/index",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/firstandthird/arc-reply.git"
