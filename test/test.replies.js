@@ -35,6 +35,16 @@ tap.test('json', t => {
   t.end();
 });
 
+tap.test('text', t => {
+  const r = reply.text('two pints of lager');
+  t.match(r, {
+    headers: { 'content-type': 'application/text; charset=utf8' },
+    body: 'two pints of lager',
+    statusCode: 200
+  });
+  t.end();
+});
+
 tap.test('json w cookies and header', t => {
   const r = reply.json({ packet: 'crisps' }, 200, { headers: { 'blah-blah': 'blah' } }, 'token=blah123');
   t.match(r, {

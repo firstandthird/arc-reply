@@ -19,6 +19,16 @@ module.exports.json = (body, statusCode = 200, response = {}, cookie = false) =>
   return response;
 };
 
+module.exports.text = (body, statusCode = 200, response = {}, cookie = false) => {
+  response.headers = Object.assign({ 'content-type': 'application/text; charset=utf8' }, response.headers);
+  response.body = body;
+  response.statusCode = statusCode;
+  if (cookie) {
+    response.cookie = cookie;
+  }
+  return response;
+};
+
 module.exports.redirect = (location, type = 'permanent', response = {}, cookie = false) => {
   response.headers = Object.assign({ Location: location }, response.headers);
   response.statusCode = type === 'permanent' ? 301 : 302;
