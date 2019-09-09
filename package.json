@@ -1,6 +1,6 @@
 {
   "name": "arc-reply",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "helper library that simplifies HTTP responses from arc/lambda",
   "main": "index.js",
   "repository": {
