@@ -14,7 +14,7 @@ const objectToCookie = (obj) => {
 
 const setResponse = (options = {}) => {
   const response = {};
-  response.headers = options.headers;
+  response.headers = options.headers || {};
   response.statusCode = options.statusCode || 200;
   if (options.cookies) {
     response.headers['Set-Cookie'] = objectToCookie(options.cookies);

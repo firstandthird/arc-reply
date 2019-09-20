@@ -107,3 +107,20 @@ tap.test('redirect w cookies and header', t => {
   });
   t.end();
 });
+
+tap.test('other options', t => {
+  const r = reply.html('<body> hi </body>', {
+    cors: true,
+    expires: 300
+  });
+  t.match(r, {
+    headers: {
+      'content-type': 'text/html; charset=utf8',
+      'cache-control': 'max-age=300',
+      'access-control-allow-origin': '*'
+    },
+    statusCode: 200,
+    body: '<body> hi </body>'
+  });
+  t.end();
+});
