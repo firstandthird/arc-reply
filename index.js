@@ -49,9 +49,9 @@ module.exports.text = (body, options) => {
   return response;
 };
 
-module.exports.redirect = (location, options) => {
+module.exports.redirect = (location, options = {}) => {
   const response = setResponse(options);
   response.headers = Object.assign({ Location: location }, response.headers);
-  response.statusCode = options.type === 'permanent' ? 301 : 302;
+  response.statusCode = options.type === 'temporary' ? 302 : 301;
   return response;
 };

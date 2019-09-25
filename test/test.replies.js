@@ -69,7 +69,7 @@ tap.test('json w cookies and header', t => {
 });
 
 tap.test('redirect', t => {
-  const perm = reply.redirect('https://google.com', { type: 'permanent' });
+  const perm = reply.redirect('https://google.com');
   const temp = reply.redirect('https://google.com', { type: 'temporary' });
   t.match(perm, {
     headers: {
