@@ -6,7 +6,7 @@ tap.test('http', t => {
     statusCode: 201,
   });
   t.match(r, {
-    headers: { 'content-type': 'text/html; charset=utf8' },
+    headers: { 'Content-Type': 'text/html; charset=utf8' },
     body: '<body> hi </body>',
     statusCode: 201
   });
@@ -20,7 +20,7 @@ tap.test('http w cookies and header', t => {
   });
   t.match(r, {
     headers: {
-      'content-type': 'text/html; charset=utf8',
+      'Content-Type': 'text/html; charset=utf8',
       'blah-blah': 'blah',
       'Set-Cookie': 'value=blah123; ttl=123; token2=blah2'
     },
@@ -33,7 +33,7 @@ tap.test('http w cookies and header', t => {
 tap.test('json', t => {
   const r = reply.json({ packet: 'crisps' });
   t.match(r, {
-    headers: { 'content-type': 'application/json; charset=utf8' },
+    headers: { 'Content-Type': 'application/json; charset=utf8' },
     body: JSON.stringify({ packet: 'crisps' }),
     statusCode: 200
   });
@@ -43,7 +43,7 @@ tap.test('json', t => {
 tap.test('text', t => {
   const r = reply.text('two pints of lager');
   t.match(r, {
-    headers: { 'content-type': 'application/text; charset=utf8' },
+    headers: { 'Content-Type': 'application/text; charset=utf8' },
     body: 'two pints of lager',
     statusCode: 200
   });
@@ -58,7 +58,7 @@ tap.test('json w cookies and header', t => {
   });
   t.match(r, {
     headers: {
-      'content-type': 'application/json; charset=utf8',
+      'Content-Type': 'application/json; charset=utf8',
       'blah-blah': 'blah',
       'Set-Cookie': 'token=blah123'
     },
@@ -115,12 +115,40 @@ tap.test('other options', t => {
   });
   t.match(r, {
     headers: {
-      'content-type': 'text/html; charset=utf8',
-      'cache-control': 'max-age=300',
-      'access-control-allow-origin': '*'
+      'Content-Type': 'text/html; charset=utf8',
+      'Cache-Control': 'max-age=300',
+      'Access-Control-Allow-Origin': '*'
     },
     statusCode: 200,
     body: '<body> hi </body>'
   });
+  t.end();
+});
+
+tap.test('cache settings', t => {
+  const seconds = 5;
+  const result = reply.html('html', {
+    cache: {
+      maxAge: seconds,
+      sharedMaxAge: seconds,
+    }
+  });
+  const result2 = reply.html('html', {
+    cache: {
+      sharedMaxAge: seconds,
+    }
+  });
+  const result3 = reply.html('html', {
+    cache: {
+      maxAge: seconds,
+    }
+  });
+  const result4 = reply.html('html', {
+    cache: 'no-store'
+  });
+  t.match(result.headers['Cache-Control'], 'max-age=5,s-maxage=5');
+  t.match(result2.headers['Cache-Control'], 's-maxage=5');
+  t.match(result3.headers['Cache-Control'], 'max-age=5');
+  t.match(result4.headers['Cache-Control'], 'no-store');
   t.end();
 });
