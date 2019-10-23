@@ -43,7 +43,7 @@ tap.test('json', t => {
 tap.test('text', t => {
   const r = reply.text('two pints of lager');
   t.match(r, {
-    headers: { 'Content-Type': 'application/text; charset=utf8' },
+    headers: { 'Content-Type': 'plain/text; charset=utf8' },
     body: 'two pints of lager',
     statusCode: 200
   });
