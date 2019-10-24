@@ -59,7 +59,7 @@ module.exports.json = (body, options) => {
 
 module.exports.text = (body, options) => {
   const response = setResponse(options);
-  response.headers = Object.assign({ 'Content-Type': 'plain/text; charset=utf8' }, response.headers);
+  response.headers = Object.assign({ 'Content-Type': 'text/plain; charset=utf8' }, response.headers);
   response.body = body;
   return response;
 };
